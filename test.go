@@ -79,7 +79,6 @@ func test2(sumStudent, sumCandie, start int64) int64 {
 
 		if start == sumStudent {
 			start = 0
-			finalStudent = start
 		}
 		start++
 		indexCandie++
