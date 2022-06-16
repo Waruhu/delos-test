@@ -1,0 +1,52 @@
+
+cache pake redis
+
+- User
+ - nama
+ - id
+
+Image
+    id
+    image_url
+
+Thread_Image
+    -id
+    - id_thread
+    - id_image    
+
+- Thread
+    - id
+    - id_user
+    - topic
+    - upvote
+
+Comment_Image
+    -id
+    - id_comment
+    - id_image_url    
+
+- Comment
+    id
+    id_thread
+    id_user
+    comment
+    upvote
+    has_child
+    parent_id
+
+parent_child 
+
+
+getCommentByCommentID(id)[]comment{
+    # parent_id= id
+    id
+    id_thread
+    id_user
+    comment
+    has_child
+    parent_id
+}
+
+
+ 
+event message

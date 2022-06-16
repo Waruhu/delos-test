@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 const (
 	Question_1 = (iota + 1)
@@ -12,40 +15,6 @@ const (
 	YES = "YES"
 	NO  = "NO"
 )
-
-func main() {
-	for {
-		fmt.Print("Type number of question:")
-		var questionNumber int
-		fmt.Scanln(&questionNumber)
-		switch questionNumber {
-		case Question_1:
-			var returnedBook, expectedReturnedBook returnBook
-			fmt.Scanln(&returnedBook.dd, &returnedBook.mm, &returnedBook.yy)
-			fmt.Scanln(&expectedReturnedBook.dd, &expectedReturnedBook.mm, &expectedReturnedBook.yy)
-			ans := test1(returnedBook, expectedReturnedBook)
-			fmt.Println(ans)
-
-		case Question_2:
-			var sumStudent, sumCandie, start int64
-			fmt.Scanln(&sumStudent, &sumCandie, &start)
-			ans := test2(sumStudent, sumCandie, start)
-			fmt.Println(ans)
-
-		case Question_3:
-			var n int
-			fmt.Scanln(&n)
-			arr := make([]int, n)
-			for i := 0; i < n; i++ {
-				fmt.Scan(&arr[i])
-			}
-			ans := test3(arr)
-			fmt.Println(ans)
-		default:
-			return
-		}
-	}
-}
 
 type returnBook struct {
 	dd, mm, yy int64
@@ -110,4 +79,36 @@ func test3(arr []int) string {
 	}
 
 	return NO
+}
+
+type matrix struct {
+	arr [][]int
+}
+
+func main() {
+	matrix := matrix{
+		[][]int{
+			{1, 4, 5, 1},
+			{3, 6, 9, 1},
+			{7, 1, 3, 1},
+			{2, 2, 2, 2},
+		},
+	}
+	fmt.Println(findAbs(matrix))
+}
+
+func findAbs(arr matrix) float64 {
+	n := len(arr.arr)
+	var diag1, step1, step2, diag2 int
+	step1, step2 = 0, n-1
+
+	for j := 0; j < n; j++ {
+		diag1 += arr.arr[step1][j]
+		step1++
+		diag2 += arr.arr[j][step2]
+		step2--
+	}
+	abs := diag1 - diag2
+	return math.Abs(float64(abs))
+
 }
